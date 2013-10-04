@@ -9,12 +9,12 @@ var HintLights = function(config) {
   return {
     render : function(rawCode, replacements) {
       var registry = {},
-          i = 0;
+          x = 0;
 
       for(var i = 0; i < replacements.length; i++) {
         var data = replacements[i];
         rawCode = rawCode.replace(data.pattern, function(_) {
-          var key = 'REPLACEME' + (i++) + '_';
+          var key = 'REPLACEME' + (x++) + '_';
           var html = wrapper(_, rawCode, data);
           registry[key] = html;
           return key;

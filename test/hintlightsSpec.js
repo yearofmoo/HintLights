@@ -43,4 +43,20 @@ describe('Hintlights', function() {
     });
   });
 
+  it('should wrap multiple replacements', function() {
+    var inst = HintLights({
+      wrapFn : function(line, code, data) {
+        return '<' + data.tag + '>' + line + '</' + data.tag + '>';
+      }
+    });
+
+    var replacements = [
+      { pattern: /hello/, tag: 'strong' },
+      { pattern: /little man/, tag: 'i' }
+    ];
+
+    var content = inst.render('hello little man', replacements);
+    expect(content).toBe('<strong>hello</strong> <i>little man</i>');
+  });
+
 });
