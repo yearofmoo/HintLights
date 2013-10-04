@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hintlights</title>
+  <link rel="stylesheet" type="text/css" href="./bower_components/google-code-prettify/src/prettify.css" />
+<style>
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: decimal; } 
+</style>
+</head>
+<body>
+
+  <pre class="code-example">
+describe('My Tests', function() {
+  beforeEach(module(function() {
+    //do some stuff with providers
+    return function(inject1, inject2) {
+      //do some stuff with injected services
+    }
+  }));
+
+  it('should check another feature', function() {
+    module(function() {
+      //works as normal
+    });
+    inject(function() {
+      //works as normal
+    });
+  });
+});
+  </pre>
+
+  <script src="./hintlights.js"></script>
+  <script src="./bower_components/google-code-prettify/src/prettify.js"></script>
+  <script>
+    window.onload = function() {
+      var parser = HintLights({
+        parseFn : function(code) {
+          return window.prettyPrintOne(code, null, true);
+        },
+        wrapFn : function(line, code, data) {
+          return '<a href="#" title="' + data.info + '">' + line + '</a>';
+        }
+      });
+
+      var items = document.getElementsByClassName('code-example');
+      var replacements = [
+        { pattern: /describe/, info : 'some bubble' }
+      ];
+
+      for(var i=0;i<items.length;i++) {
+        var item = items[i];
+        var code = item.innerHTML;
+        item.innerHTML = parser.render(code, replacements);
+      }
+    };
+  </script>
+</body>
+</html>
