@@ -66,13 +66,20 @@ describe('My Tests', function() {
       var items = document.getElementsByClassName('code-example');
       var replacements = [
         { pattern: /describe/, info : 'some bubble', className : 'black' },
-        { pattern: /it/, info : 'another bubble', className : 'red' }
+        { pattern: /it(?=\()/g, info : 'another bubble', className : 'red' }
       ];
 
       for(var i=0;i<items.length;i++) {
         var item = items[i];
         var code = item.innerHTML;
         item.innerHTML = parser.render(code, replacements);
+      }
+
+      var bubbles = document.getElementsByClassName('code-example');
+      for(var i=0;i<bubbles.length;i++) {
+        bubbles[i].onclick = function(e) {
+          alert(e.target.getAttribute('title'));
+        }
       }
     };
   </script>
