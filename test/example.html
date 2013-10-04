@@ -12,6 +12,20 @@ li.L5,
 li.L6,
 li.L7,
 li.L8 { list-style-type: decimal; } 
+
+.bubble {
+  padding:5px;
+  border-radius:5px;
+  text-decoration:none;
+}
+.bubble.black {
+  color:white;
+  background:rgba(0,0,0,0.5);
+}
+.bubble.red {
+  color:white;
+  background:rgba(255,0,0,0.5);
+}
 </style>
 </head>
 <body>
@@ -45,13 +59,14 @@ describe('My Tests', function() {
           return window.prettyPrintOne(code, null, true);
         },
         wrapFn : function(line, code, data) {
-          return '<a href="#" title="' + data.info + '">' + line + '</a>';
+          return '<a href="#" class="bubble ' + data.className + '" title="' + data.info + '">' + line + '</a>';
         }
       });
 
       var items = document.getElementsByClassName('code-example');
       var replacements = [
-        { pattern: /describe/, info : 'some bubble' }
+        { pattern: /describe/, info : 'some bubble', className : 'black' },
+        { pattern: /it/, info : 'another bubble', className : 'red' }
       ];
 
       for(var i=0;i<items.length;i++) {
