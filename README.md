@@ -10,7 +10,7 @@ Check out example to get an idea of how it works.
 2. `npm install`
 3. `./node_modules/.bin/bower install`
 4. `http-server -p 8888 .`
-5. `open http://localhost:8888/example.html`
+5. `open http://localhost:8888/test/example.html`
 
 # Tests
 

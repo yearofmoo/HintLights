@@ -14,8 +14,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './hintlights.js',
-      './hintlightsSpec.js'
+      './app/hintlights.js',
+      './test/hintlightsSpec.js'
     ],
 
 
